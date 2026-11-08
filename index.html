@@ -927,9 +927,9 @@ footer a:where(:not([class])):hover{color:var(--gold)}
         </div>
       </div>
       <div class="card seal-pulse" aria-label="Proof pulse">
-        <div class="pp-head mono"><span class="pp-dot"></span>PROOF PULSE <em data-pp="stamp">as of 2026-11-08 16:11 UTC</em></div>
-        <div class="pp-row"><span class="pp-k">LAST SEAL</span><span class="pp-v" data-pp="last">2026-11-08 16:05 UTC &#183; Rekor 16:05:27</span></div>
-        <div class="pp-row"><span class="pp-k">WITNESSES</span><span class="pp-v" data-pp="wit">20,164 five-minute &#183; 1,681 hourly</span></div>
+        <div class="pp-head mono"><span class="pp-dot"></span>PROOF PULSE <em data-pp="stamp">as of 2026-11-08 16:19 UTC</em></div>
+        <div class="pp-row"><span class="pp-k">LAST SEAL</span><span class="pp-v" data-pp="last">2026-11-08 16:15 UTC &#183; Rekor 16:15:09</span></div>
+        <div class="pp-row"><span class="pp-k">WITNESSES</span><span class="pp-v" data-pp="wit">20,166 five-minute &#183; 1,681 hourly</span></div>
         <div class="pp-row"><span class="pp-k">BITCOIN</span><span class="pp-v" data-pp="btc">1,675 hours anchored &#183; rest pending calendar</span></div>
         <div class="pp-row"><span class="pp-k">OFFICIAL</span><span class="pp-v" data-pp="man">from 2026-09-03 00:00 UTC &#183; manifest sealed 2026-09-02 13:17 UTC</span></div>
         <div class="pp-row"><span class="pp-k">REVEALED</span><span class="pp-v" data-pp="rev">through 06 Nov &#183; 4,857 calls</span></div>
@@ -3557,7 +3557,7 @@ window.__lkBootChart=function(){
     else if(SIGKEY==='feed') h=it('g','called up — price rose 1%')+it('r','called down — price fell 1%')+it('m','went −3% against the call')+it('o','still unresolved');
     else if(epLens) h=it('g','episode resolved in its favour')+it('r','episode resolved against it')+'<span class="lgi" style="opacity:.72">consecutive calls fold into one independent thought — one verdict each</span>';
     else h=it('g','called up — resolved in its favour')+it('r','called down — resolved in its favour')+it('m','resolved against it');
-    if(window.__lkPend&&window.__lkPend.length)h+=it('p','pulsing — awaiting the market');
+    if(window.__lkLiveStart)h+=it('p','pulsing — awaiting the market');
     el.innerHTML=h;
   }
   window.__axKeyUpdate=__axKey; __axKey();
