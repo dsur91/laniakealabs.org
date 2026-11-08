@@ -773,6 +773,11 @@ a:where(:not([class])):hover{color:var(--gold-bright);text-decoration-color:var(
 footer a:where(:not([class])){color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--glass-line)}
 footer a:where(:not([class])):hover{color:var(--gold)}
 .lk-live{margin:12px 0 0;font-size:10.5px;letter-spacing:.16em;color:var(--ink-faint)}.lk-live b{color:var(--gold);font-weight:650}
+#lkPend{position:absolute;pointer-events:none}
+.obs-key .lgd.p{background:currentColor;position:relative;opacity:.9}
+.obs-key .lgd.p::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid currentColor;animation:lkPing 2.4s ease-out infinite}
+@keyframes lkPing{0%{transform:scale(1);opacity:.7}100%{transform:scale(2.6);opacity:0}}
+@media (prefers-reduced-motion: reduce){.obs-key .lgd.p::after{animation:none;opacity:.5;transform:scale(1.7)}}
 </style>
 </head>
 <body>
@@ -922,9 +927,9 @@ footer a:where(:not([class])):hover{color:var(--gold)}
         </div>
       </div>
       <div class="card seal-pulse" aria-label="Proof pulse">
-        <div class="pp-head mono"><span class="pp-dot"></span>PROOF PULSE <em data-pp="stamp">as of 2026-11-08 15:46 UTC</em></div>
-        <div class="pp-row"><span class="pp-k">LAST SEAL</span><span class="pp-v" data-pp="last">2026-11-08 15:40 UTC &#183; Rekor 15:40:22</span></div>
-        <div class="pp-row"><span class="pp-k">WITNESSES</span><span class="pp-v" data-pp="wit">20,159 five-minute &#183; 1,680 hourly</span></div>
+        <div class="pp-head mono"><span class="pp-dot"></span>PROOF PULSE <em data-pp="stamp">as of 2026-11-08 16:11 UTC</em></div>
+        <div class="pp-row"><span class="pp-k">LAST SEAL</span><span class="pp-v" data-pp="last">2026-11-08 16:05 UTC &#183; Rekor 16:05:27</span></div>
+        <div class="pp-row"><span class="pp-k">WITNESSES</span><span class="pp-v" data-pp="wit">20,164 five-minute &#183; 1,681 hourly</span></div>
         <div class="pp-row"><span class="pp-k">BITCOIN</span><span class="pp-v" data-pp="btc">1,675 hours anchored &#183; rest pending calendar</span></div>
         <div class="pp-row"><span class="pp-k">OFFICIAL</span><span class="pp-v" data-pp="man">from 2026-09-03 00:00 UTC &#183; manifest sealed 2026-09-02 13:17 UTC</span></div>
         <div class="pp-row"><span class="pp-k">REVEALED</span><span class="pp-v" data-pp="rev">through 06 Nov &#183; 4,857 calls</span></div>
@@ -2854,9 +2859,9 @@ window.__lkBootChart=function(){
     for(let k=0;k<n;k++)u[k]=raw.charCodeAt(k);
     return window.__LKA20=new Float32Array(u.buffer);
   }
-  const A20=decodeBin(), N20=D.n20, T020=D.span[0];
+  let A20=decodeBin(), N20=D.n20; const T020=D.span[0];
   /* per-bar trade tape: volume (BTC), trade count, signed-flow share — the language the reader hears */
-  const VB=(function(){try{const u=window.__LKVBRAW;const n=u.length;const nb=N20;return {vq:new Uint16Array(u.buffer,0,nb),tq:new Uint16Array(u.buffer,nb*2,nb),fq:new Int8Array(u.buffer,nb*4,nb)};}catch(e){return null;}})();
+  let VB=(function(){try{const u=window.__LKVBRAW;const n=u.length;const nb=N20;return {vq:new Uint16Array(u.buffer,0,nb),tq:new Uint16Array(u.buffer,nb*2,nb),fq:new Int8Array(u.buffer,nb*4,nb)};}catch(e){return null;}})();
   function volLine(t0ms,tfms){if(!VB)return '';const k0=Math.floor((t0ms-T020)/20000),kb=Math.max(1,Math.round(tfms/20000));let v=0,t=0,sgn=0,ok=0;for(let k=k0;k<k0+kb&&k<N20;k++){if(k<0||VB.vq[k]===65535)continue;const vol=Math.expm1(VB.vq[k]/4000);v+=vol;t+=VB.tq[k];sgn+=vol*VB.fq[k]/100;ok++;}if(!ok||v<=0)return '';const fl=Math.round(100*sgn/v);const vs=v<100?v.toFixed(1):v<10000?v.toFixed(0):Math.round(v/1000)+'k';const ts=t<100000?t.toLocaleString('en-US'):t<1000000?Math.round(t/1000)+'k':(t/1000000).toFixed(2)+'M';const fs=(fl<0?'\u2212'+(-fl):'+'+fl)+'%';return `<span class="k">tape</span><span class="v pp2"><span>${vs} BTC</span><span>\u00b7</span><span>${ts} tr</span></span><span class="k">flow</span><span class="v">${fs}</span>`;}
   function aggFloor(sb){
     if(sb===1)return {t0:T020,step:20000,a:A20,n:N20};
@@ -2869,11 +2874,11 @@ window.__lkBootChart=function(){
     }
     return {t0:T020,step:sb*20000,a,n:m};
   }
-  const FLOORS={'20S':aggFloor(1),'1M':aggFloor(3),'5M':aggFloor(15),'20M':aggFloor(60),'30M':aggFloor(90),'1H':aggFloor(180),'2H':aggFloor(360),'4H':aggFloor(720),'1D':aggFloor(4320)};
+  let FLOORS={'20S':aggFloor(1),'1M':aggFloor(3),'5M':aggFloor(15),'20M':aggFloor(60),'30M':aggFloor(90),'1H':aggFloor(180),'2H':aggFloor(360),'4H':aggFloor(720),'1D':aggFloor(4320)};
   window.__LK20={T0:T020,STEP:20000,A:A20,n:N20};window.__LKVB=VB;
   /* calls: [tsSec, dir, verdict, entry, resolveSec, episodeId] → runtime rows */
   const EPV={};for(const e of D.signals.episodes)EPV[e[0]]=e[4];
-  const callAvailability=r=>r[6]!=null?r[6]:(r[8]!=null?r[8]:r[0]*1000); const FEED=D.signals.calls.map(r=>[callAvailability(r), r[1]===1?1:-1, 0, r[2], 0, r[3], r[4]-(callAvailability(r)-r[0]*1000)/1000, r[2], r[5],r[7],r[0]*1000]);
+  const callAvailability=r=>r[6]!=null?r[6]:(r[8]!=null?r[8]:r[0]*1000); const feedRow=r=>[callAvailability(r), r[1]===1?1:-1, 0, r[2], 0, r[3], r[4]-(callAvailability(r)-r[0]*1000)/1000, r[2], r[5],r[7],r[0]*1000]; let FEED=D.signals.calls.map(feedRow);
   window.__LKEP={verd:EPV,totals:D.signals.totals};
   const SIGSETS={calls:FEED};
   let SIGKEY='calls', S=SIGSETS.calls;
@@ -2895,10 +2900,10 @@ window.__lkBootChart=function(){
     if(window.__axKeyUpdate)window.__axKeyUpdate();
     if(window.__lkRedraw)window.__lkRedraw();};
 
-  const H0=D.span[0], TEND=D.span[1];
+  const H0=D.span[0]; let TEND=D.span[1];
   const TFN={20000:'20S',60000:'1M',300000:'5M',1200000:'20M',1800000:'30M',3600000:'1H',7200000:'2H',14400000:'4H',86400000:'1D'};
   const TFS=[20000,60000,300000,1200000,1800000,3600000,7200000,14400000,86400000];
-  const MAXSPAN=TEND-H0;   /* initial resolution is the ceiling: zooming only goes deeper */
+  let MAXSPAN=TEND-H0;   /* initial resolution is the ceiling: zooming only goes deeper */
   function floorOf(ms){return FLOORS[TFN[ms]];}
   let T0=floorOf(1200000).t0;
   let sigMode='show'; window.__lkSigMode=sigMode;
@@ -2906,7 +2911,7 @@ window.__lkBootChart=function(){
   /* seeded ignition: every visible call is planted by its own Big Bang particle —
      the seed arrives in the call's own colour, and the call lights the instant it lands */
   let WSTART=(matchMedia('(prefers-reduced-motion: reduce)').matches)?(performance.now()-99999):0;
-  const seededAt=new Float64Array(S.length).fill(Infinity);
+  let seededAt=new Float64Array(S.length).fill(Infinity);
   if(WSTART)seededAt.fill(0);
   function __lkWake(){
     if(WSTART)return;
@@ -3171,7 +3176,7 @@ window.__lkBootChart=function(){
     }
     /* call particles: exact birth time on the x-axis, entry price on the y-axis */
     const r0=Math.max(1.15,Math.min(3.1,bw*0.36));
-    const dotA=r0<1.6?0.82:1;
+    const dotA=r0<1.6?0.82:1;window.__lkView={xOf:xOf,yOf:yOf,r0:r0,W:W,H:H,L:PADL,R:PADR,T:PADT,B:PADB,up:P.sigUp,dn:P.sigDn,mono:P.sigMono,mode:sigMode};if(window.__lkPendKick)window.__lkPendKick();
     const TU=theme==='dark'?{mA:1,mI:.56,mR:1.1,hA:1,hI:.7,hR:1}:{mA:1,mI:1,mR:1.1,hA:1,hI:1,hR:1}; /* dot rendering, tuned by eye 30 Aug 2026 */
     const tint=(c,k)=>{if(k===1)return c;let r,g_,b;if(c[0]==='#'){r=parseInt(c.slice(1,3),16);g_=parseInt(c.slice(3,5),16);b=parseInt(c.slice(5,7),16);}else{const m=c.match(/hsla?\(([\d.]+),([\d.]+)%,([\d.]+)%/);if(!m)return c;const H=+m[1]/360,S=+m[2]/100,L=Math.max(0,Math.min(1,+m[3]/100*k));const f=(n)=>{const q=L<.5?L*(1+S):L+S-L*S,p=2*L-q,t=((n+H)%1+1)%1;return Math.round(255*(t<1/6?p+(q-p)*6*t:t<.5?q:t<2/3?p+(q-p)*(2/3-t)*6:p));};return `rgb(${f(1/3)},${f(0)},${f(-1/3)})`;}const mx=Math.max(r,g_,b)/255,mn=Math.min(r,g_,b)/255,l=(mx+mn)/2;const d=mx-mn;let h=0,sat=0;if(d){sat=l>.5?d/(2-mx-mn):d/(mx+mn);const R=r/255,G=g_/255,B=b/255;h=mx===R?((G-B)/d+(G<B?6:0)):mx===G?((B-R)/d+2):((R-G)/d+4);h/=6;}const L=Math.max(0,Math.min(1,l*k));const q=L<.5?L*(1+sat):L+sat-L*sat,p=2*L-q;const f=(t)=>{t=((t%1)+1)%1;return Math.round(255*(t<1/6?p+(q-p)*6*t:t<.5?q:t<2/3?p+(q-p)*(2/3-t)*6:p));};return `rgb(${f(h+1/3)},${f(h)},${f(h-1/3)})`;};
     visHits.length=0;visAll.length=0;
@@ -3552,6 +3557,7 @@ window.__lkBootChart=function(){
     else if(SIGKEY==='feed') h=it('g','called up — price rose 1%')+it('r','called down — price fell 1%')+it('m','went −3% against the call')+it('o','still unresolved');
     else if(epLens) h=it('g','episode resolved in its favour')+it('r','episode resolved against it')+'<span class="lgi" style="opacity:.72">consecutive calls fold into one independent thought — one verdict each</span>';
     else h=it('g','called up — resolved in its favour')+it('r','called down — resolved in its favour')+it('m','resolved against it');
+    if(window.__lkPend&&window.__lkPend.length)h+=it('p','pulsing — awaiting the market');
     el.innerHTML=h;
   }
   window.__axKeyUpdate=__axKey; __axKey();
@@ -3561,6 +3567,25 @@ window.__lkBootChart=function(){
     __axKey();draw();
   }));
   window.__axView=function(a,b){vm0=Math.max(H0,a);vm1=Math.min(TEND,b);draw();return [vm0,vm1];};
+  /* LIVE: the live layer hands the merged record here once a minute. Bars and resolved calls join in place, the view keeps
+     following the right edge if it was there, and the figures come from the merged totals (closed UTC days only). */
+  window.__lkChartUpdate=function(D2,A,VBRAW){
+    const n0=S.length,tOld=TEND,follow=vm1>=tOld-2*tfMs;
+    A20=window.__LKA20=A;N20=D2.n20;window.__LKVBRAW=VBRAW;
+    VB=(function(){try{const nb=N20;return {vq:new Uint16Array(VBRAW.buffer,0,nb),tq:new Uint16Array(VBRAW.buffer,nb*2,nb),fq:new Int8Array(VBRAW.buffer,nb*4,nb)};}catch(e){return null;}})();
+    FLOORS={'20S':aggFloor(1),'1M':aggFloor(3),'5M':aggFloor(15),'20M':aggFloor(60),'30M':aggFloor(90),'1H':aggFloor(180),'2H':aggFloor(360),'4H':aggFloor(720),'1D':aggFloor(4320)};
+    window.__LK20={T0:T020,STEP:20000,A:A20,n:N20};window.__LKVB=VB;
+    for(const e of D2.signals.episodes)EPV[e[0]]=e[4];
+    window.__LKEP.totals=D2.signals.totals;
+    FEED=D2.signals.calls.map(feedRow);SIGSETS.calls=FEED;if(SIGKEY==='calls')S=FEED;
+    const sa=new Float64Array(S.length);sa.set(seededAt.subarray(0,Math.min(n0,S.length)));seededAt=sa;   /* a new call is lit at once */
+    TEND=D2.span[1];MAXSPAN=TEND-H0;
+    if(follow&&TEND>tOld){vm0+=TEND-tOld;vm1+=TEND-tOld;}
+    const ts=document.getElementById('trackspan');if(ts){const MO=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+      const a=new Date(H0),b=new Date(TEND);ts.textContent=MO[a.getUTCMonth()]+' '+a.getUTCDate()+', '+a.getUTCFullYear()+' — '+MO[b.getUTCMonth()]+' '+b.getUTCDate()+', '+b.getUTCFullYear();}
+    document.querySelectorAll('.sig-stat').forEach(el=>{delete el.dataset.filled;});
+    window.__axSetSig(SIGKEY);
+  };
   smAll.forEach(btn=>btn.addEventListener('click',()=>{
     sigMode=(sigMode==='show')?'dir':(sigMode==='dir')?'mono':'show';
     window.__lkSigMode=sigMode;
@@ -4095,7 +4120,8 @@ addEventListener('keydown',function(e){if(e.key==='Escape')lkNoteClose();
     var none = { candles: candlesBuf, vol: volBuf, D: D, open: [], added: 0, bars: 0 };
     if (!tail || tail.schema !== 'laniakea-live-tail-v1' || tail.base_end_ms !== D.span[1] || tail.step_ms !== D.stepMs) return none;
     var cs = tail.candles || [], m = cs.length, n0 = D.n20, n1 = n0 + m;
-    var A0 = new Float32Array(candlesBuf); if (A0.length !== 4 * n0) return none;
+    /* the snapshot bars come as an ArrayBuffer at load, and as a view of the page's own array when the page refreshes itself */
+    var A0 = candlesBuf instanceof Float32Array ? candlesBuf : new Float32Array(candlesBuf); if (A0.length !== 4 * n0) return none;
     var A = new Float32Array(4 * n1); A.set(A0);
     var prev = A0[4 * n0 - 1];
     for (var i = 0; i < m; i++) {
@@ -4139,8 +4165,114 @@ addEventListener('keydown',function(e){if(e.key==='Escape')lkNoteClose();
   if (typeof module !== 'undefined' && module.exports) module.exports = { lkMerge: lkMerge }; else root.lkMerge = lkMerge;
 })(typeof window !== 'undefined' ? window : globalThis);
 </script>
-<script>(function(){var V="4265dc72-785d3c14-59e7a1c9";var LKT=(/(^|\.)laniakealabs\.org$/.test(location.hostname)?"https://live.laniakealabs.org/live.json":"live.json");var lkTailP=(function(){try{var c=new AbortController();setTimeout(function(){c.abort()},5000);return fetch(LKT+"?t="+Date.now(),{cache:"no-store",signal:c.signal}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});}catch(e){return Promise.resolve(null);}})();window.__lkTailP=lkTailP;function lkLiveLine(){var L=window.__LKLIVE,el=document.getElementById("lkLive");if(!el||!L||!L.tail)return;var t=L.tail,last=t.base_end_ms+(t.candles.length?t.candles.length-1:0)*t.step_ms;function hm(ms){return new Date(ms).toISOString().slice(11,16)}var s="<b>LIVE</b> &#183; TAPE TO "+hm(last)+" UTC";if(L.added)s+=" &#183; "+L.added+(L.added==1?" NEW CALL":" NEW CALLS")+" ON THE CHART";if(L.open.length)s+=" &#183; AWAITING THE MARKET: "+L.open.map(function(c){return hm(c.source_ms)+" "+(c.dir==="LONG"?"UP":"DOWN")}).join(", ");el.innerHTML=s;el.hidden=false;var u=document.querySelector(".upd-line");if(u)u.textContent=u.textContent.replace(/SNAPSHOT .*UTC/,"LIVE TAPE TO "+hm(last)+" UTC");}var lkGot=0,lkBox=null;function lkProg(){var w=document.getElementById("chartwrap");if(!w)return;if(!lkBox){lkBox=document.createElement("div");lkBox.className="lk-load mono";lkBox.innerHTML='<span>LOADING THE RECORD</span><span class="b"><i></i></span><span class="n"></span>';w.appendChild(lkBox);}var T=35112960+4118802+(lite?0:10972800),p=Math.min(1,lkGot/T);lkBox.querySelector("i").style.width=(p*100).toFixed(1)+"%";lkBox.querySelector(".n").textContent=(lkGot/1e6).toFixed(1)+" / "+(T/1e6).toFixed(0)+" MB";}function get(u,t){return fetch(u+"?v="+V).then(function(r){if(!r.ok)throw new Error(u+" "+r.status);if(!r.body||!r.body.getReader)return t==="json"?r.json():r.arrayBuffer();var rd=r.body.getReader(),parts=[],n=0;function pump(){return rd.read().then(function(x){if(x.done){var all=new Uint8Array(n),o=0;parts.forEach(function(c){all.set(c,o);o+=c.length;});return t==="json"?JSON.parse(new TextDecoder().decode(all)):all.buffer;}parts.push(x.value);n+=x.value.length;lkGot+=x.value.length;lkProg();return pump();});}return pump();});}
-var lite=(window.matchMedia&&matchMedia("(max-width: 900px)").matches)||(navigator.connection&&navigator.connection.saveData);Promise.all([get("axiom_v9_data_live_20261108/candles_20S.bin"),lite?Promise.resolve(null):get("axiom_v9_data_live_20261108/vol20.bin"),get("axiom_v9_data_live_20261108/data.json","json"),lkTailP]).then(function(a){var M=(window.lkMerge&&a[3])?window.lkMerge(a[0],a[1],a[2],a[3]):null;if(M&&M.bars+M.added>0){a[0]=M.candles;a[1]=M.vol;a[2]=M.D;}window.__LKLIVE=M?{tail:a[3],open:M.open,added:M.added,bars:M.bars}:null;if(lkBox&&lkBox.parentNode)lkBox.parentNode.removeChild(lkBox);window.__LKA20=new Float32Array(a[0]);window.__LKVBRAW=a[1]?new Uint8Array(a[1]):null;window.__LKDATA=a[2];if(window.__lkBootChart)window.__lkBootChart();try{lkLiveLine();}catch(e){}}).catch(function(e){var w=document.getElementById("chartwrap");if(w){var d=document.createElement("div");d.className="mono";d.style.cssText="position:absolute;left:14px;top:14px;font-size:10px;letter-spacing:.14em;opacity:.7";d.textContent="THE RECORD DID NOT LOAD \u00b7 "+e.message;w.appendChild(d);}console.error(e);});})();</script>
+<script>
+/* Live layer. Once a minute, while the page is visible, it reads the public tail again and hands the merged record to the chart: new
+   bars and resolved calls join in place, figures stay on closed UTC days. Calls still awaiting the market are drawn on a transparent
+   canvas over the chart — the dot of their direction with a quiet ping — and when the market answers they move into the chart with
+   one fading ring. Nothing here judges a call: every outcome comes from the tail's resolved rows. */
+(function () {
+  'use strict';
+  var q = new URLSearchParams(location.search), POLL = Math.max(3000, Number(q.get('lkpoll')) || 60000), PERIOD = 2400, FADE = 1400;
+  var RM = matchMedia('(prefers-reduced-motion: reduce)').matches, DPR = Math.min(2, devicePixelRatio || 1);
+  var base = null, url = null, lastGen = 0, busy = false, pend = [], fades = [], cv = null, g = null, raf = 0, last = 0, inView = true;
+
+  function at(t) {                                   /* a call's height when the tail has no entry yet: its bar's close */
+    var L = window.__LK20; if (!L) return NaN;
+    var i = Math.floor((t - L.T0) / L.STEP); return i >= 0 && i < L.n ? L.A[4 * i + 3] : NaN;
+  }
+  function size() {
+    var c = document.getElementById('chart'); if (!c || !cv) return;
+    cv.style.left = c.offsetLeft + 'px'; cv.style.top = c.offsetTop + 'px';
+    cv.style.width = c.clientWidth + 'px'; cv.style.height = c.clientHeight + 'px';
+    cv.width = Math.round(c.clientWidth * DPR); cv.height = Math.round(c.clientHeight * DPR); kick();
+  }
+  function setup() {
+    var c = document.getElementById('chart'); if (!c || cv) return;
+    cv = document.createElement('canvas'); cv.id = 'lkPend'; cv.setAttribute('aria-hidden', 'true'); g = cv.getContext('2d');
+    c.parentNode.insertBefore(cv, c.nextSibling); size();
+    if (window.ResizeObserver) new ResizeObserver(size).observe(c); addEventListener('resize', size);
+    if (window.IntersectionObserver) new IntersectionObserver(function (e) { inView = e[0].isIntersecting; kick(); }).observe(c);
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) { kick(); if (Date.now() - lastPoll > POLL) poll(); } });
+  }
+  function kick() { if (!raf && g) raf = requestAnimationFrame(frame); }
+  window.__lkPendKick = kick;
+
+  function frame(now) {
+    raf = 0;
+    var V = window.__lkView; if (!g || !V) return;
+    if (now - last < 30 && fades.length + pend.length) { raf = requestAnimationFrame(frame); return; }   /* ~30 frames a second */
+    last = now;
+    g.setTransform(DPR, 0, 0, DPR, 0, 0); g.clearRect(0, 0, cv.width, cv.height);
+    var r = Math.max(1.6, V.r0), x0 = V.L, x1 = V.W - V.R, y0 = V.T, y1 = V.H - V.B;
+    function spot(t, p) { var x = V.xOf(t), y = V.yOf(p); return x >= x0 - 2 && x <= x1 + 2 && y >= y0 && y <= y1 ? [x, y] : null; }
+    pend.forEach(function (c) {
+      var s = spot(c.t, c.p); if (!s) return;
+      var col = V.mode === 'mono' ? V.mono : (c.up ? V.up : V.dn);
+      g.globalAlpha = .95; g.fillStyle = col; g.beginPath(); g.arc(s[0], s[1], r, 0, 7); g.fill();
+      g.strokeStyle = col; g.lineWidth = 1;
+      if (RM) { g.globalAlpha = .45; g.beginPath(); g.arc(s[0], s[1], r * 2.2, 0, 7); g.stroke(); return; }
+      var u = ((now + c.ph) % PERIOD) / PERIOD;
+      g.globalAlpha = .55 * (1 - u) * (1 - u); g.beginPath(); g.arc(s[0], s[1], r + 1 + u * r * 3.6, 0, 7); g.stroke();
+    });
+    fades = fades.filter(function (f) {
+      var u = (now - f.start) / FADE; if (u >= 1) return false;
+      var s = spot(f.t, f.p); if (!s) return true;
+      g.globalAlpha = .7 * (1 - u) * (1 - u); g.strokeStyle = f.k === 'up' ? V.up : f.k === 'dn' ? V.dn : V.mono; g.lineWidth = 1.2;
+      g.beginPath(); g.arc(s[0], s[1], r + 1 + u * r * 5, 0, 7); g.stroke(); return true;
+    });
+    g.globalAlpha = 1;
+    if (!document.hidden && inView && (fades.length || (pend.length && !RM))) raf = requestAnimationFrame(frame);
+  }
+
+  function setPending(open) {
+    var had = pend.length;
+    pend = (open || []).map(function (c, k) {
+      var t = c.issued_ms || c.source_ms, p = Number(c.entry);
+      return { tok: c.token, t: t, p: isFinite(p) && p > 0 ? p : at(t), up: c.dir === 'LONG', ph: k * 397 };
+    }).filter(function (c) { return isFinite(c.p); });
+    window.__lkPend = pend;
+    if (!!had !== !!pend.length && window.__axKeyUpdate) window.__axKeyUpdate();
+    kick();
+  }
+
+  var lastPoll = 0;
+  function poll() {
+    if (busy || document.hidden || !base) return;
+    busy = true; lastPoll = Date.now();
+    var c = new AbortController(); setTimeout(function () { c.abort(); }, 8000);
+    fetch(url + '?t=' + Date.now(), { cache: 'no-store', signal: c.signal }).then(function (r) { return r.ok ? r.json() : null; }).then(function (t) {
+      if (!t || !(t.generated_ms > lastGen)) return;
+      var A = window.__LKA20, n0 = base.D.n20;
+      if (!A || A.length < 4 * n0 || !window.lkMerge) return;
+      var M = window.lkMerge(A.subarray(0, 4 * n0), base.vol, base.D, t);
+      if (M.D === base.D) return;                    /* this tail does not belong to the page's snapshot: leave the page as it is */
+      lastGen = t.generated_ms;
+      var before = (window.__LKLIVE && window.__LKLIVE.open) || [];
+      if (window.__lkChartUpdate) window.__lkChartUpdate(M.D, new Float32Array(M.candles), M.vol ? new Uint8Array(M.vol) : null);
+      window.__LKLIVE = { tail: t, open: M.open, added: M.added, bars: M.bars };
+      if (window.__lkLiveLine) window.__lkLiveLine();
+      var still = {}; M.open.forEach(function (o) { still[o.token] = 1; });
+      before.forEach(function (o) {
+        if (still[o.token]) return;
+        var done = (t.calls || []).filter(function (x) { return x.token === o.token && x.status === 'resolved'; })[0]; if (!done) return;
+        var tt = o.issued_ms || o.source_ms, p = Number(done.entry);
+        fades.push({ t: tt, p: isFinite(p) && p > 0 ? p : at(tt), k: done.hit ? (o.dir === 'LONG' ? 'up' : 'dn') : 'mono', start: performance.now() });
+      });
+      setPending(M.open);
+    }).catch(function () {}).then(function () { busy = false; });
+  }
+
+  /* called by the loader once the chart has booted, with the snapshot as it was loaded (before any tail was merged into it) */
+  window.__lkLiveStart = function (snapshot, tailUrl) {
+    if (base || !snapshot || !snapshot.D) return;
+    base = snapshot; url = tailUrl; lastGen = (window.__LKLIVE && window.__LKLIVE.tail && window.__LKLIVE.tail.generated_ms) || 0;
+    setup(); setPending((window.__LKLIVE && window.__LKLIVE.open) || []);
+    setInterval(poll, POLL);
+  };
+})();
+</script>
+<script>(function(){var V="4265dc72-785d3c14-59e7a1c9";var LKT=(/(^|\.)laniakealabs\.org$/.test(location.hostname)?"https://live.laniakealabs.org/live.json":"live.json");var lkTailP=(function(){try{var c=new AbortController();setTimeout(function(){c.abort()},5000);return fetch(LKT+"?t="+Date.now(),{cache:"no-store",signal:c.signal}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});}catch(e){return Promise.resolve(null);}})();window.__lkTailP=lkTailP;function lkLiveLine(){var L=window.__LKLIVE,el=document.getElementById("lkLive");if(!el||!L||!L.tail)return;var t=L.tail,last=t.base_end_ms+(t.candles.length?t.candles.length-1:0)*t.step_ms;function hm(ms){return new Date(ms).toISOString().slice(11,16)}var s="<b>LIVE</b> &#183; TAPE TO "+hm(last)+" UTC";if(L.added)s+=" &#183; "+L.added+(L.added==1?" NEW CALL":" NEW CALLS")+" ON THE CHART";if(L.open.length)s+=" &#183; AWAITING THE MARKET: "+L.open.map(function(c){return hm(c.source_ms)+" "+(c.dir==="LONG"?"UP":"DOWN")}).join(", ");el.innerHTML=s;el.hidden=false;var u=document.querySelector(".upd-line");if(u)u.textContent=u.textContent.replace(/(SNAPSHOT|LIVE TAPE TO) .*UTC/,"LIVE TAPE TO "+hm(last)+" UTC");}window.__lkLiveLine=lkLiveLine;var lkGot=0,lkBox=null;function lkProg(){var w=document.getElementById("chartwrap");if(!w)return;if(!lkBox){lkBox=document.createElement("div");lkBox.className="lk-load mono";lkBox.innerHTML='<span>LOADING THE RECORD</span><span class="b"><i></i></span><span class="n"></span>';w.appendChild(lkBox);}var T=35112960+4118802+(lite?0:10972800),p=Math.min(1,lkGot/T);lkBox.querySelector("i").style.width=(p*100).toFixed(1)+"%";lkBox.querySelector(".n").textContent=(lkGot/1e6).toFixed(1)+" / "+(T/1e6).toFixed(0)+" MB";}function get(u,t){return fetch(u+"?v="+V).then(function(r){if(!r.ok)throw new Error(u+" "+r.status);if(!r.body||!r.body.getReader)return t==="json"?r.json():r.arrayBuffer();var rd=r.body.getReader(),parts=[],n=0;function pump(){return rd.read().then(function(x){if(x.done){var all=new Uint8Array(n),o=0;parts.forEach(function(c){all.set(c,o);o+=c.length;});return t==="json"?JSON.parse(new TextDecoder().decode(all)):all.buffer;}parts.push(x.value);n+=x.value.length;lkGot+=x.value.length;lkProg();return pump();});}return pump();});}
+var lite=(window.matchMedia&&matchMedia("(max-width: 900px)").matches)||(navigator.connection&&navigator.connection.saveData);Promise.all([get("axiom_v9_data_live_20261108/candles_20S.bin"),lite?Promise.resolve(null):get("axiom_v9_data_live_20261108/vol20.bin"),get("axiom_v9_data_live_20261108/data.json","json"),lkTailP]).then(function(a){var B0={D:a[2],vol:a[1]};var M=(window.lkMerge&&a[3])?window.lkMerge(a[0],a[1],a[2],a[3]):null;if(M&&M.bars+M.added>0){a[0]=M.candles;a[1]=M.vol;a[2]=M.D;}window.__LKLIVE=M?{tail:a[3],open:M.open,added:M.added,bars:M.bars}:null;if(lkBox&&lkBox.parentNode)lkBox.parentNode.removeChild(lkBox);window.__LKA20=new Float32Array(a[0]);window.__LKVBRAW=a[1]?new Uint8Array(a[1]):null;window.__LKDATA=a[2];if(window.__lkBootChart)window.__lkBootChart();try{lkLiveLine();}catch(e){}try{if(window.__lkLiveStart)window.__lkLiveStart(B0,LKT);}catch(e){}}).catch(function(e){var w=document.getElementById("chartwrap");if(w){var d=document.createElement("div");d.className="mono";d.style.cssText="position:absolute;left:14px;top:14px;font-size:10px;letter-spacing:.14em;opacity:.7";d.textContent="THE RECORD DID NOT LOAD \u00b7 "+e.message;w.appendChild(d);}console.error(e);});})();</script>
 <script>(function(){if(!matchMedia('(max-width:640px)').matches)return;var n=document.querySelector('.obs-note');if(!n)return;var lg=n.querySelector('.legal');var b=document.createElement('button');b.className='obs-more mono';b.textContent='HOW TO READ THE TRACK \u25be';b.addEventListener('click',function(){var o=n.classList.toggle('open');b.textContent=o?'FOLD THE KEY \u25b4':'HOW TO READ THE TRACK \u25be';});n.before(b);if(lg){lg.classList.add('legal-mob');n.after(lg);}})();</script>
 <script>(function(){if(!matchMedia('(max-width:640px)').matches)return;
 ['.labsec .prose-main','.benchsec .prose-main'].forEach(function(sel){
