@@ -1,0 +1,39 @@
+{
+  "canonical_track_manifest_sha256": "cfbd9c017e32dc2c38444281a52d7b1e96447780082960f63ad914adf3ed2857",
+  "content_sha256": "9d51255b9d3ef0f0a606ac4851e779a994bf0644f5d4905ec109e4bdf5feab9a",
+  "created_utc": "2026-09-08T07:58:38.997983+00:00",
+  "effective_from_token": 89442776,
+  "effective_from_utc": "2026-09-08T08:18:40+00:00",
+  "evidence_chain_reset": false,
+  "files": {
+    "judge_spec": {
+      "path": "specs/PUBLIC_JUDGE_SPEC_V3_20260908.json",
+      "sha256": "011ce7038726c094e244127985c4064f6b8366ec935126356e7ceb525a6b4066"
+    },
+    "method_changelog": {
+      "path": "methodology/JUDGE_V3_ACTUAL_ISSUE_ENTRY_20260908.md",
+      "sha256": "c3bff502e5d53fd1d31c0e92be7a6799d840d7d0ce13267e1c937d60c1e9a5db"
+    },
+    "verifier": {
+      "path": "tools/verify_public_track_v4.py",
+      "sha256": "8e13ba9b13844aa482f6c8b2e2cc2ca3bf73737b78099ae527971d95ff38577c"
+    }
+  },
+  "historical_rejudge": "RETROSPECTIVE_V3_ACTUAL_ISSUE_ENTRY_DISTINCT_FROM_V2",
+  "judge_id": "LANIAKEA-ISSUED-FIRST-TRADE-V3",
+  "legacy_artifacts_rewritten": false,
+  "legacy_pack_resolution_fields": "RETAINED_NOT_THE_V3_SOURCE_OF_TRUTH",
+  "model_epoch_disclosure": "NONE",
+  "public_inputs": [
+    "PUBLIC_PROOF_TREE",
+    "PUBLIC_KEYS_AND_PINNED_TRUST",
+    "PUBLIC_BINANCE_AGGTRADES_TAPE"
+  ],
+  "recipe_disclosure": "NONE",
+  "release_id": "LANIAKEA-PUBLIC-VERIFIER-004",
+  "required_penalties": "V4/V4.1_UNCHANGED",
+  "schema": "laniakea-public-verifier-release-v4",
+  "signal_records_rewritten": false,
+  "supersedes_release_sha256": "61b6cd831c41eff1b667c2148ed828bfe0e2ba912263096afd8da6226c41ce9c",
+  "track_id": "LANIAKEA-CLOVER-H-OFFICIAL-V1"
+}

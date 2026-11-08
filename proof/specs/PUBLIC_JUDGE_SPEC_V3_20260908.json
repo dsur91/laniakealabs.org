@@ -1,0 +1,53 @@
+{
+  "content_sha256": "be20c0e0f308f99770e39a5f8fd150b3bf3b099a98b2267295ef461e2980ea13",
+  "created_utc": "2026-09-08T07:58:38.997983+00:00",
+  "effective_from_utc": "2026-09-08T08:18:40+00:00",
+  "entry": {
+    "availability_time": "Original public claim issued_time_utc,not source_time_utc or browser receipt time.",
+    "execution_claim": "Reproducible public-price proxy,not guaranteed bid/ask,order fill,commission or slippage.",
+    "price": "price of the first eligible aggTrade;retain its trade ID and transact timestamp",
+    "prior_prices": "Never use the source token close as the V3 entry.",
+    "rule": "FIRST_PUBLIC_TRADE_STRICTLY_AFTER_ISSUE",
+    "timestamp_precision": "Compare integer exchange milliseconds against the full original UTC issue timestamp;equal times are not strictly after."
+  },
+  "evidence_chain_reset": false,
+  "historical_rejudge": "V3 can retrospectively re-evaluate previously committed live signals;this is not represented as their originally published V2 score.",
+  "historical_research": "Where actual issue times were never recorded,any delay scenario is a labeled simulation,not measured live issuance.",
+  "judge_id": "LANIAKEA-ISSUED-FIRST-TRADE-V3",
+  "market_source": {
+    "event_identity": "a",
+    "event_order": [
+      "T",
+      "a"
+    ],
+    "integrity": "Contiguous increasing trade IDs and nondecreasing transact time;unknown gaps/conflicts or insufficient prefix hold verification.",
+    "provider": "Binance",
+    "public_dataset": "aggTrades",
+    "symbol": "BTCUSDT",
+    "venue": "USD-M Futures"
+  },
+  "model_epoch_disclosure": "NONE",
+  "outcome": {
+    "expiry_boundary": "Trades at or before the expiry timestamp are eligible;later complete source coverage certifies expiration.",
+    "expiry_seconds_after_issue": 345600,
+    "external_timestamp_rule": "Trusted external signal timestamp strictly before the crossing trade transact timestamp.",
+    "first_eligible_event": "A subsequent trade after the entry trade.",
+    "first_touch": "First chronological subsequent trade whose price reaches either barrier. Trade IDs break equal-millisecond ties.",
+    "lower_barrier": "entry *0.99",
+    "missing_or_late_external_timestamp": "PUBLIC_MISS",
+    "missing_source": "HOLD_INSUFFICIENT_TAPE_NOT_SILENT_OMISSION",
+    "resolution_time": "Actual crossing trade transact timestamp,not a20sbar close.",
+    "upper_barrier": "entry *1.01",
+    "wrong_direction_or_expiry": "PUBLIC_MISS"
+  },
+  "previous_judge_spec_sha256": "c97fb9f130edee2b8a2adc900686671487ca413f71affd67b33cfb4cd11dc74d",
+  "private_recipe_disclosure": "NONE",
+  "purpose": "Evaluate unchanged predictions from actual recorded availability,using a public-trade entry proxy.",
+  "schema": "laniakea-public-market-judge-spec-v3",
+  "scoring": {
+    "NO_SIGNAL": "Not a signal denominator member except existing missing-opening penalties.",
+    "population": "All unchanged accepted disclosed claims. No outcome-based reselection.",
+    "unrevealed_or_missing_pack": "All existing V4/V4.1 penalties remain in force."
+  },
+  "signal_records_rewritten": false
+}

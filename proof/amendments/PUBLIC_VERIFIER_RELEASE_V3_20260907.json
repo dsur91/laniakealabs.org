@@ -1,0 +1,39 @@
+{
+  "canonical_track_manifest_sha256": "cfbd9c017e32dc2c38444281a52d7b1e96447780082960f63ad914adf3ed2857",
+  "content_sha256": "9b2dc7ab4867156098bcb1a0aa0068778ff123bd36a955d963487d372443ad06",
+  "created_utc": "2026-09-07T20:48:44.348916+00:00",
+  "effective_from_token": 89440830,
+  "effective_from_utc": "2026-09-07T21:30:00+00:00",
+  "evidence_chain_reset": false,
+  "files": {
+    "judge_spec": {
+      "path": "specs/PUBLIC_JUDGE_SPEC_V2_20260907.json",
+      "sha256": "c97fb9f130edee2b8a2adc900686671487ca413f71affd67b33cfb4cd11dc74d"
+    },
+    "method_changelog": {
+      "path": "methodology/JUDGE_V2_CHANGELOG_20260907.md",
+      "sha256": "c81eb04a5c192e518b4ca9d2f3c625e4cdd139de0d51ea599e031c691bce3682"
+    },
+    "verifier": {
+      "path": "tools/verify_public_track_v3.py",
+      "sha256": "fc9eb2e2afbfe279e0ef387e38d4cbeed4a729b3118871f6f082453eb197ea29"
+    }
+  },
+  "historical_rejudge": "RETROSPECTIVE_V2_DISTINCT_FROM_ORIGINAL_V1",
+  "judge_id": "LANIAKEA-TOUCH-20S-V2",
+  "legacy_artifacts_rewritten": false,
+  "legacy_pack_resolution_fields": "V1_RETAINED_NOT_THE_V2_SOURCE_OF_TRUTH",
+  "model_epoch_disclosure": "NONE",
+  "public_inputs": [
+    "PUBLIC_PROOF_TREE",
+    "PUBLIC_KEYS_AND_TRUST_ROOTS",
+    "PUBLIC_BINANCE_AGGTRADES_TAPE"
+  ],
+  "recipe_disclosure": "NONE",
+  "release_id": "LANIAKEA-PUBLIC-VERIFIER-003",
+  "required_penalties": "V4/V4.1_UNCHANGED",
+  "schema": "laniakea-public-verifier-release-v3",
+  "signal_records_rewritten": false,
+  "supersedes_release_sha256": "4856ab3e9c3056cb6c469cbc7310070271184f6873409b3634dccdebca0c4dfa",
+  "track_id": "LANIAKEA-CLOVER-H-OFFICIAL-V1"
+}

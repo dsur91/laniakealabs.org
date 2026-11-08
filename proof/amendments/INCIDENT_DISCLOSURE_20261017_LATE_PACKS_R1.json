@@ -1,0 +1,151 @@
+{
+  "alters_track_or_scoring": false,
+  "cause": "The external anchoring service ran an OpenTimestamps receipt-upgrade pass over every receipt every six hours and stamped nothing while the pass ran. As receipts accumulated the pass grew from seconds to about nine minutes, and the pass at 00:00 UTC overlapped the daily pack publication.",
+  "content_integrity": "Each late pack is complete. Every revealed token matches the commitments published on its own day (five-minute witnesses in Rekor, hourly OpenTimestamps). A complete opening that matches the earlier commitments does not allow content substitution. Per-signal RFC 3161 timestamps were unaffected.",
+  "content_sha256": "3ba3020346b5088da5aec1a1757e886a4eed6964dd5f6570b922bcead1f36900",
+  "created_utc": "2026-10-18T06:49:29.272694+00:00",
+  "creates_claims_for_missing_tokens": false,
+  "delayed_witness_stamps": {
+    "affected": "the first five-minute witness after 00:00 UTC on twelve nights; the second one as well on 2 of them",
+    "method": "verified Sigstore time minus the witness interval close",
+    "nights": [
+      {
+        "night_utc": "2026-09-30",
+        "witness_0000_seconds_after_interval_close": 247,
+        "witness_0005_seconds_after_interval_close": 16
+      },
+      {
+        "night_utc": "2026-10-01",
+        "witness_0000_seconds_after_interval_close": 223,
+        "witness_0005_seconds_after_interval_close": 23
+      },
+      {
+        "night_utc": "2026-10-02",
+        "witness_0000_seconds_after_interval_close": 166,
+        "witness_0005_seconds_after_interval_close": 29
+      },
+      {
+        "night_utc": "2026-10-03",
+        "witness_0000_seconds_after_interval_close": 189,
+        "witness_0005_seconds_after_interval_close": 20
+      },
+      {
+        "night_utc": "2026-10-05",
+        "witness_0000_seconds_after_interval_close": 256,
+        "witness_0005_seconds_after_interval_close": 24
+      },
+      {
+        "night_utc": "2026-10-06",
+        "witness_0000_seconds_after_interval_close": 311,
+        "witness_0005_seconds_after_interval_close": 47
+      },
+      {
+        "night_utc": "2026-10-07",
+        "witness_0000_seconds_after_interval_close": 351,
+        "witness_0005_seconds_after_interval_close": 56
+      },
+      {
+        "night_utc": "2026-10-08",
+        "witness_0000_seconds_after_interval_close": 286,
+        "witness_0005_seconds_after_interval_close": 24
+      },
+      {
+        "night_utc": "2026-10-11",
+        "witness_0000_seconds_after_interval_close": 259,
+        "witness_0005_seconds_after_interval_close": 29
+      },
+      {
+        "night_utc": "2026-10-14",
+        "witness_0000_seconds_after_interval_close": 515,
+        "witness_0005_seconds_after_interval_close": 218
+      },
+      {
+        "night_utc": "2026-10-15",
+        "witness_0000_seconds_after_interval_close": 513,
+        "witness_0005_seconds_after_interval_close": 220
+      },
+      {
+        "night_utc": "2026-10-16",
+        "witness_0000_seconds_after_interval_close": 413,
+        "witness_0005_seconds_after_interval_close": 116
+      }
+    ],
+    "usual_seconds_after_interval_close": {
+      "max": 118,
+      "median": 27
+    }
+  },
+  "disclosure_id": "LATE-FULL-PACKS-AND-DELAYED-WITNESS-STAMPS-20261017",
+  "figures_v5": {
+    "A_signal_hit": "1,667 / 2,900 = 57.48 %",
+    "B_coverage": "171,683 / 172,800 official tokens revealed = 99.354 % (declared outage 1,117)",
+    "C_contract_score": "1,667 / 21,291 = 7.83 % (penalties 18,397)",
+    "as_of_utc": "2026-10-17T15:59:55.745420+00:00",
+    "binance_tape": "BTCUSDT USD-M aggTrades 2026-09-02..2026-10-13, data.binance.vision, CHECKSUM-verified",
+    "cryptographic_integrity": "PASS",
+    "independent_market_rejudge": "PASS: 0 mismatches against the current judge LANIAKEA-ISSUED-FIRST-TRADE-V3. Against the legacy resolution fields kept in the packs (pre-V3 judge) there are 2,900 classified differences (112 direction, 2,788 timing only); they are a documented judge change, not prediction errors."
+  },
+  "fix": {
+    "change": "The upgrade pass no longer runs around midnight UTC; it now starts at 06:20, 12:20 and 18:20 UTC. Stamping of new artifacts is otherwise unchanged.",
+    "deployed_utc": [
+      "2026-10-17T13:02:00Z",
+      "2026-10-17T13:47:00Z"
+    ],
+    "first_night_after_fix": {
+      "full_pack": "FULL_TOKEN_PACK_2026-10-13.json: verified Sigstore time 2026-10-18T00:04:58Z, 302 seconds before its 2026-10-18T00:10:00Z deadline (on time)",
+      "method": "verified Sigstore time minus the witness interval close; deadline minus verified Sigstore time",
+      "night_utc": "2026-10-18",
+      "witness_0000_seconds_after_interval_close": 39,
+      "witness_0005_seconds_after_interval_close": 32
+    },
+    "first_witness_after_fix_seconds_to_sigstore": 15,
+    "monitoring": "Pack punctuality and witness stamping are checked three times a day."
+  },
+  "how_to_verify": [
+    "Verify Ed25519 and Sigstore of FULL_TOKEN_PACK_<day>.json for each listed day and compare its Sigstore time with the deadline.",
+    "Recompute the token chain and five-minute Merkle roots from the pack and compare them with the witnesses stamped on that day.",
+    "Run tools/verify_public_track_v4.py --witness-chain: it reports exactly these four days as LATE_PACK with the frozen penalty.",
+    "Run tools/verify_public_track_v5.py --binance-tape <public Binance aggTrades files>: integrity, the three figures and every day status."
+  ],
+  "late_packs": [
+    {
+      "day_utc": "2026-10-02",
+      "deadline_utc": "2026-10-07T00:10:00Z",
+      "late_seconds": 45,
+      "manifest_sigstore_time_utc": "2026-10-07T00:10:45Z",
+      "official_signals_that_day": 3
+    },
+    {
+      "day_utc": "2026-10-09",
+      "deadline_utc": "2026-10-14T00:10:00Z",
+      "late_seconds": 211,
+      "manifest_sigstore_time_utc": "2026-10-14T00:13:31Z",
+      "official_signals_that_day": 3
+    },
+    {
+      "day_utc": "2026-10-10",
+      "deadline_utc": "2026-10-15T00:10:00Z",
+      "late_seconds": 195,
+      "manifest_sigstore_time_utc": "2026-10-15T00:13:15Z",
+      "official_signals_that_day": 0
+    },
+    {
+      "day_utc": "2026-10-11",
+      "deadline_utc": "2026-10-16T00:10:00Z",
+      "late_seconds": 109,
+      "manifest_sigstore_time_utc": "2026-10-16T00:11:49Z",
+      "official_signals_that_day": 0
+    }
+  ],
+  "public_verifier_v4_cascade": {
+    "contractual_penalties": "4 x 4,320 for the late days + 1,117 for the declared outage = 18,397 public misses; unchanged.",
+    "finding": "The public verifier V4 does not open a late pack and treats any UNREVEALED row as an unrecomputable chain. Every later pack therefore fails its cross-pack seam check and is reported INVALID_PACK. As of 2026-10-17 V4 reports 11 penalized days (47,520 misses); seven of them (2026-10-03 to 2026-10-08 and 2026-10-12) are this artifact, not damaged content.",
+    "fix": "Public verifier V5 (separate release; V4 bytes unchanged) opens late packs and bridges a declared outage only through its verified signed document.",
+    "independent_check": "All 44 due full packs (2026-08-30 to 2026-10-12: 4 prelaunch days and 40 official days) verify with V4's own primitives once late packs are opened, and every day-to-day seam matches; on 2026-10-07 a new, separately released bridge rule continues the chain from the head recorded in the signed outage document across exactly its 1,117 tokens. This is V4 primitives plus a new gap bridge, not unmodified V4 passing the whole tree."
+  },
+  "recipe_disclosure": "NONE",
+  "schema": "proof-tape-public-incident-disclosure-v1",
+  "scoring_effect": "Under contract V4.1 every expected official token of each late day is a public miss (4 x 4,320 = 17,280). The penalty is frozen and is not reduced by this disclosure. All six signals of these days are published.",
+  "summary": "Four daily full-token pack manifests received their earliest verified Sigstore time after the contract V4.1 deadline, by 45 to 211 seconds. On twelve nights the first five-minute witness after 00:00 UTC (on 2 of them also the second) was stamped later than usual. The cause was found and fixed on 2026-10-17. Scoring under contract V4/V4.1 is unchanged. The public verifier V4 additionally mislabels seven on-time days as invalid (a verifier defect); V5 fixes it.",
+  "track_id": "LANIAKEA-CLOVER-H-OFFICIAL-V1"
+}

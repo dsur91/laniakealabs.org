@@ -1,0 +1,39 @@
+{
+  "amendment_id": "PROOF-TAPE-EVIDENCE-CONTRACT-V4.2",
+  "amends_clarification_sha256": "64dd722dfef2354b827ca34c9d2ad27a89942d544bdb9e33ead7f5101647e405",
+  "amends_contract_sha256": "ce10400918697e055b9343b27dd9b7e2afcd44dd59767ecf28d4eb99b42e048d",
+  "canonical_track_manifest_sha256": "cfbd9c017e32dc2c38444281a52d7b1e96447780082960f63ad914adf3ed2857",
+  "chain_continuity_all_days": {
+    "basis": "contract V4 UNREVEALED_TOKEN_IS_MISS.late_opening = MAY_RESTORE_AUDIT_CONTENT_BUT_NEVER_REDUCES_THE_FROZEN_PENALTY",
+    "declared_outage": "crossed only through an authenticated signed outage document whose whole range lies inside one pack: every token of the range UNREVEALED and no other UNREVEALED row; the token before the range OPENED (in the previous verified pack when the range starts the day) with the document previous_public_chain_sha256 as the chain head; the first token after the range OPENED in the same pack; every later link recomputed; the document anchored no later than the pack (equal times accepted). Cross-day ranges are not supported and keep integrity HOLD. Those tokens remain public misses.",
+    "late_pack": "a late pack is fully verified and its final chain continues the cross-pack seam; its own penalty is unchanged",
+    "unavailable_predecessor": "a missing, invalid or unbridgeable predecessor never penalizes a later verified day; that seam is reported UNVERIFIED and cryptographic integrity is HOLD until it can be verified"
+  },
+  "content_sha256": "9ac96dd1063d1cc05a7076c79711643731471779ab52e90aeec7d5a740c8ab38",
+  "created_utc": "2026-10-18T06:50:26.183414+00:00",
+  "evidence_classes": {
+    "EVIDENCE_UNAVAILABLE": "a referenced public file is missing or unreadable, or a verification tool cannot run, gives an indeterminate result or fails without positively attributing the failure to the evidence: no penalty, integrity HOLD until resolved",
+    "INVALID_PACK": "demonstrated invalid signature, bytes or content (every input readable and the failure positively attributed to the evidence by the verification tool or by a hash or chain mismatch): one public miss per expected official token",
+    "precedence": "INVALID_PACK > EVIDENCE_UNAVAILABLE > LATE_PENDING / LATE_FINAL_PENALTY / ON_TIME / LATE_RESTORED"
+  },
+  "full_pack_timing": {
+    "INVALID_PACK": "as V4.1: one public miss per expected official token",
+    "LATE_FINAL_PENALTY": "Sigstore time > deadline + 86400, or no admitted verified pack at deadline + 86400 (including a manifest still without a bundle): every expected official token of the day is a public miss, frozen; a later opening may restore audit content, never the score",
+    "LATE_PENDING": "no verified pack while evaluation time < deadline + 86400; not final; excluded from final figures and listed",
+    "LATE_RESTORED": "deadline < Sigstore time <= deadline + 86400 and the pack fully verifies; scored by content; public LATE flag with the exact lateness in seconds",
+    "ON_TIME": "Sigstore time <= deadline; scored by content",
+    "admission": "Evidence counts only if its verified Sigstore time is not after the evaluation instant. A pack manifest without its Sigstore bundle is not yet published: LATE_PENDING inside the window, LATE_FINAL_PENALTY after it.",
+    "boundaries": "Sigstore time equal to the deadline is ON_TIME; equal to deadline + 86400 is LATE_RESTORED; a day is never penalized twice",
+    "deadline": "unchanged: UTC day end + 345600 s + 600 s; evidence = earliest verified Sigstore transparency time of the pack manifest",
+    "restoration_window_seconds": 86400
+  },
+  "model_epoch_disclosure": "NONE",
+  "prior_days": "Scoring of every earlier day stays under V4/V4.1, including every frozen penalty.",
+  "public_recipe_information": "NONE",
+  "reason": "Unopened = miss keeps withholding pointless. Opened late = miss forever adds no protection once the opening matches the earlier commitments, so from 2026-10-21 a short delay is flagged instead of erasing the day. Past penalties stay as signed.",
+  "recipe_disclosure": "NONE",
+  "schema": "proof-tape-evidence-contract-amendment-v1",
+  "scoring_effective_for_official_days_from_utc": "2026-10-21T00:00:00Z",
+  "scoring_effective_from_token": 89627040,
+  "track_id": "LANIAKEA-CLOVER-H-OFFICIAL-V1"
+}

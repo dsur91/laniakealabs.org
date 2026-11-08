@@ -1,0 +1,20 @@
+{
+  "schema": "proof-tape-public-evidence-contract-clarification-v4.1",
+  "amendment_id": "PT-EVIDENCE-CONTRACT-004.1",
+  "created_utc": "2026-09-02T13:25:00+00:00",
+  "effective_from_token": 89419680,
+  "effective_from_utc": "2026-09-03T00:00:00+00:00",
+  "canonical_track_manifest_sha256": "cfbd9c017e32dc2c38444281a52d7b1e96447780082960f63ad914adf3ed2857",
+  "clarifies_contract_sha256": "ce10400918697e055b9343b27dd9b7e2afcd44dd59767ecf28d4eb99b42e048d",
+  "full_pack_timing": {
+    "eligibility_not_before_seconds_after_utc_day_end": 345600,
+    "external_publication_deadline_seconds_after_eligibility": 600,
+    "deadline_evidence": "EARLIEST_VERIFIED_SIGSTORE_TRANSPARENCY_TIME_OF_PACK_MANIFEST",
+    "late_or_missing_pack": "EVERY_EXPECTED_OFFICIAL_TOKEN_IN_THE_DAY_IS_A_PUBLIC_MISS",
+    "late_opening": "MAY_RESTORE_AUDIT_CONTENT_BUT_NEVER_REDUCES_THE_FROZEN_PENALTY"
+  },
+  "reason": "make the 96-hour eligibility boundary operationally deterministic without weakening fail-closed scoring",
+  "recipe_disclosure": "NONE",
+  "model_epoch_disclosure": "NONE",
+  "public_recipe_information": "NONE"
+}

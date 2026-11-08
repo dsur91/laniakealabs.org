@@ -1,0 +1,28 @@
+{
+  "schema": "proof-tape-public-spec-v2",
+  "epoch": "PT-EPOCH-002",
+  "purpose": "prove that a later disclosed direction and its two times were committed before external timestamps",
+  "token_interval_seconds": 20,
+  "committed_claims": "one salted claim for every contiguous token",
+  "claim_fields_after_reveal": [
+    "token_id",
+    "source_time_utc",
+    "issued_time_utc",
+    "claim_kind",
+    "direction_if_signal"
+  ],
+  "claim_kinds": [
+    "NO_SIGNAL",
+    "SIGNAL"
+  ],
+  "direction_values": [
+    "LONG",
+    "SHORT"
+  ],
+  "privacy": "the internal selection process and all non-claim fields are outside the public proof",
+  "commitment": "SHA256(domain || random_32_byte_salt || canonical_public_claim)",
+  "near_time_witness": "fixed five-minute Merkle root with Sigstore RFC3161 timestamp and transparency-log inclusion proof",
+  "long_term_witness": "fixed hourly Merkle root with OpenTimestamps Bitcoin attestation",
+  "missing_data": "never backdated; a recovered claim enters the external interval in which it was actually observed",
+  "production_dependency": false
+}

@@ -1,0 +1,27 @@
+{
+  "alters_track_or_scoring": false,
+  "assessment_kind": "POST_HOC_MODEL_FREE_ELIGIBILITY_CHECK",
+  "created_utc": "2026-10-07T06:34:46.681647+00:00",
+  "creates_claims_for_missing_tokens": false,
+  "historical_source_or_proof_rewrite": false,
+  "incident_id": "C93-MISSED-BOUNDARY-20261007",
+  "limits": "This retrospective assessment is not a contemporaneous claim for the missing records, does not establish that the next-period controller was armed, and does not waive existing completeness or scoring penalties.",
+  "model_inference_used": false,
+  "opening_policy": "The sealed assessment can be opened to an independent auditor without public disclosure of the rules.",
+  "private_assessment_commitment": {
+    "algorithm": "SHA256(domain_bytes || random_32_byte_salt || canonical_private_assessment)",
+    "canonicalization": "UTF-8 JSON, keys sorted, compact separators, ASCII escaping, no trailing newline",
+    "domain": "PROOF-TAPE-PRIVATE-OUTAGE-ASSESSMENT-V1",
+    "domain_encoding": "UTF-8 followed by one 0x00 byte, matching the private weekly-policy scheme",
+    "sha256": "560a0ff4bded80f0d38ce58d35238776f1a194b614d5e1125a2c67e1df79b3f0"
+  },
+  "recipe_disclosure": "NONE",
+  "refers_to_amendment": "INFERENCE_OUTAGE_20261007_CLOSED_R1.json",
+  "refers_to_amendment_sha256": "155e42a726883a681d37b765aae2f489309b6e6914d75831edfd5b46c13ca28d",
+  "rules_sealed_before_outage": {
+    "created_utc": "2026-09-29T22:07:30.892003+00:00",
+    "policy_commitment_sha256": "0d6fbdde8f0e97c6c4e18c7f32f41aeef5233ca4f135c0f6ff844adfb2e2d752"
+  },
+  "schema": "proof-tape-declared-outage-assessment-v1",
+  "statement": "At every bar of the declared missing window, at least one model-independent eligibility rule sealed in the referenced policy before the outage was not met. Under the unchanged rules, no signal could have been issued during the outage, regardless of model weights."
+}

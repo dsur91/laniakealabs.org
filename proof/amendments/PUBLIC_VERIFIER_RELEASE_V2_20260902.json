@@ -1,0 +1,79 @@
+{
+  "canonical_track_manifest_sha256": "cfbd9c017e32dc2c38444281a52d7b1e96447780082960f63ad914adf3ed2857",
+  "capabilities": {
+    "ots_statuses": [
+      "PENDING_CALENDAR",
+      "NETWORK_UNAVAILABLE",
+      "BITCOIN_ATTESTATION_AVAILABLE",
+      "BITCOIN_ATTESTATION_AVAILABLE_NODE_UNAVAILABLE",
+      "BITCOIN_ATTESTATION_ON_DISK",
+      "BITCOIN_CONFIRMED"
+    ],
+    "pre_pack_merkle_scope": "COMMITMENT_ONLY_UNTIL_FULL_PACK_OPENING",
+    "witness_chain_checks": [
+      "ED25519",
+      "PREVIOUS_ARTIFACT_SHA256",
+      "INTERVAL_CONTINUITY",
+      "REKOR_INCLUSION_AND_TIME",
+      "HOURLY_OTS_STATUS"
+    ],
+    "witness_chain_mode": "--witness-chain",
+    "witness_chain_scope": "SETTLED_FIVE_MINUTE_AND_HOURLY_ARTIFACT_PREFIX"
+  },
+  "content_sha256": "24f546e489558f0080384b4395a9049cd8a944569611d3c969583f1be32de8f1",
+  "created_utc": "2026-09-02T18:42:19.202180+00:00",
+  "deadline_clarification_v4_1_sha256": "64dd722dfef2354b827ca34c9d2ad27a89942d544bdb9e33ead7f5101647e405",
+  "effective_from_token": 89419680,
+  "effective_from_utc": "2026-09-03T00:00:00+00:00",
+  "evidence_contract_v4_sha256": "ce10400918697e055b9343b27dd9b7e2afcd44dd59767ecf28d4eb99b42e048d",
+  "files": {
+    "cosign_public_key": {
+      "path": "trust/COSIGN_PUBLIC_KEY.pem",
+      "sha256": "1f09442142ee25fef267f4b1b1cc6a660060eb8765f68f444799d16a4763af92"
+    },
+    "judge_spec": {
+      "path": "specs/PUBLIC_JUDGE_SPEC_V1_20260902.json",
+      "sha256": "9b92eed47742832161af878bc18394a373c1ebb6d878631475deb1aefaf58e07"
+    },
+    "tsa_trusted_root": {
+      "path": "trust/SIGSTORE_TSA_TRUSTED_ROOT.json",
+      "sha256": "6494e21ea73fa7ee769f85f57d5a3e6a08725eae1e38c755fc3517c9e6bc0b66"
+    },
+    "verifier": {
+      "path": "tools/verify_public_track_v2.py",
+      "sha256": "bb68b440ea6e46038ad7bcdfc241a2a0ca32cac4bbae99fa79c0320d8b4c90de"
+    }
+  },
+  "forbidden_inputs": [
+    "PRODUCTION_SQLITE",
+    "PRIVATE_KEY",
+    "MODEL_OR_PRIVATE_RUNTIME_ARTIFACTS",
+    "PRIVATE_SELECTION_RECIPE"
+  ],
+  "inputs": [
+    "PUBLIC_PROOF_TREE",
+    "PUBLIC_KEYS_AND_TRUST_ROOTS",
+    "PUBLIC_BINANCE_AGGTRADES_TAPE_FOR_INDEPENDENT_REJUDGE"
+  ],
+  "model_epoch_disclosure": "NONE",
+  "output_statuses": [
+    "CRYPTOGRAPHIC_INTEGRITY",
+    "INDEPENDENT_MARKET_REJUDGE",
+    "PUBLIC_SCORE"
+  ],
+  "public_codename": {
+    "classification": "PUBLIC_TRACK_LABEL_NOT_PRIVATE_RECIPE_MARKER",
+    "value": "CLOVER-H"
+  },
+  "recipe_disclosure": "NONE",
+  "release_id": "LANIAKEA-PUBLIC-VERIFIER-002",
+  "runtime_dependencies": [
+    "Python standard library",
+    "OpenSSL",
+    "Cosign",
+    "OpenTimestamps client"
+  ],
+  "schema": "laniakea-public-verifier-release-v2",
+  "supersedes_release_sha256": "c95228a61fd5f1e35d668f6b16b19e78b60be00ec7d0a80dbf8e7f376a4467d5",
+  "track_id": "LANIAKEA-CLOVER-H-OFFICIAL-V1"
+}

@@ -1,0 +1,50 @@
+{
+  "bar_construction": {
+    "close": "price of the last event by (T,a) inside the token",
+    "empty_token": "carry the previous close",
+    "interval_seconds": 20,
+    "source_time": "token_id * 20 seconds UTC, left edge",
+    "token_id": "floor(transact_time_ms / 20000)"
+  },
+  "content_sha256": "0f9244494075753c929114da9845fb724db583530bb18bcf81e5ec186d2fbca9",
+  "created_utc": "2026-09-02T17:53:38.805089+00:00",
+  "market_source": {
+    "accepted_input": [
+      "official Binance Vision aggTrades CSV ZIP",
+      "equivalent non-overlapping CSV/CSV.GZ",
+      "equivalent non-overlapping NDJSON/NDJSON.GZ with a,p,T fields"
+    ],
+    "event_identity": "aggregate trade id a",
+    "event_order": [
+      "transact_time T",
+      "aggregate trade id a"
+    ],
+    "provider": "Binance",
+    "public_dataset": "aggTrades",
+    "symbol": "BTCUSDT",
+    "venue": "USD-M Futures"
+  },
+  "outcome": {
+    "entry": "close of the signal token",
+    "expiry": "issued_time_utc + 345600 seconds",
+    "first_evaluated_token": "signal token + 1",
+    "long_outcome": "first future 20-second close at or above the upper barrier",
+    "lower_barrier": "entry * 0.99",
+    "resolution_after_expiry": "PUBLIC_MISS",
+    "short_outcome": "first future 20-second close at or below the lower barrier",
+    "unresolved_at_expiry": "PUBLIC_MISS",
+    "upper_barrier": "entry * 1.01"
+  },
+  "private_signal_selection_recipe": "NOT_DISCLOSED_AND_NOT_REQUIRED_FOR_REJUDGING",
+  "purpose": "independently rejudge disclosed signal outcomes; this is not the private signal-selection recipe",
+  "schema": "laniakea-public-market-judge-spec-v1",
+  "scoring": {
+    "NO_SIGNAL": "not in the signal hit-rate denominator unless its token is unrevealed",
+    "SIGNAL_LONG": "HIT only when independent barrier_direction is LONG and timing proof is valid",
+    "SIGNAL_SHORT": "HIT only when independent barrier_direction is SHORT and timing proof is valid",
+    "invalid_or_late_timestamp": "MISS",
+    "missing_or_late_daily_pack": "one MISS for every expected official token in that UTC day",
+    "unrevealed_token": "MISS",
+    "wrong_direction": "MISS"
+  }
+}

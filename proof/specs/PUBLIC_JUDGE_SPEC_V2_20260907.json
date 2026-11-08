@@ -1,0 +1,59 @@
+{
+  "bar_construction": {
+    "OHLC": "prices of finalized actualaggTrades,ordered by(T,a)",
+    "empty_token": "previousclose only inside a proven complete event stream",
+    "interval": "[(token_id-1)*20000,token_id*20000) milliseconds",
+    "interval_seconds": 20,
+    "source_time": "token_id *20seconds UTC,RIGHT/END edge",
+    "token_id": "floor(transact_time_ms / 20000) + 1",
+    "unfinished_bar": "not evaluated"
+  },
+  "content_sha256": "caff0a0720e2d4d114f9df4d10c5d8f21e89da07839a33e9513ad8598a4451fd",
+  "created_utc": "2026-09-07T20:48:44.348916+00:00",
+  "effective_from_utc": "2026-09-07T21:30:00+00:00",
+  "evidence_chain_reset": false,
+  "historical_rejudge": "Allpreviousclaims may be recalculated underV2 and labelled retrospectiveV2;theiroriginalV1 evaluation and sealedbytes remainavailable.",
+  "judge_id": "LANIAKEA-TOUCH-20S-V2",
+  "market_source": {
+    "event_identity": "a",
+    "event_order": [
+      "T",
+      "a"
+    ],
+    "input_integrity": "complete,strictlyIDordered,nonoverlappingarchives;gaps/conflictsholdverification",
+    "provider": "Binance",
+    "public_dataset": "aggTrades",
+    "symbol": "BTCUSDT",
+    "venue": "USD-M Futures"
+  },
+  "model_epoch_disclosure": "NONE",
+  "outcome": {
+    "double_touch_same_bar": "PUBLIC_MISS_FOR_EITHER_DIRECTION",
+    "entry": "close of the signal token",
+    "expiry": "issued_time_utc+345600seconds",
+    "expiry_boundary": "only completedbars ending no later thanexpiry are eligible;apartialexpirybar cannot createahit",
+    "first_evaluated_token": "signal token+1",
+    "long_outcome": "first subsequent completed20sbar with high>=upper,provided lower was not touched earlier",
+    "lower_barrier": "entry *0.99",
+    "missing_source": "HOLD_INSUFFICIENT_TAPE_NOT_SILENT_OMISSION",
+    "resolution_interval": "[bar_start,bar_end)",
+    "resolution_ts": "bar end label;NOT claimed exact intrabar ticktime",
+    "short_outcome": "first subsequent completed20sbar with low<=lower,provided upper was not touched earlier",
+    "trusted_timestamp_rule": "strictly beforebar_start,aconservative sufficient condition;no fabricated sub-bar order",
+    "unresolved_at_expiry": "PUBLIC_MISS",
+    "upper_barrier": "entry *1.01"
+  },
+  "previous_judge_spec_sha256": "9b92eed47742832161af878bc18394a373c1ebb6d878631475deb1aefaf58e07",
+  "private_signal_selection_recipe": "NOT_DISCLOSED",
+  "purpose": "Rejudge the same disclosed predictions by first barrier touch,without changing prediction records.",
+  "schema": "laniakea-public-market-judge-spec-v2",
+  "scoring": {
+    "NO_SIGNAL": "not a signaldenominator member unless unrevealedtoken penalty applies",
+    "ambiguous": "MISS",
+    "execution_claim": "price-barrier outcome,not guaranteed exchangefill",
+    "missing_or_late_timestamp": "MISS",
+    "signal_population": "unchanged committedacceptedclaims",
+    "unrevealed_or_missing_pack": "unchangedV4/V4.1 penalties",
+    "wrong_direction": "MISS"
+  }
+}

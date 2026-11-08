@@ -1,0 +1,39 @@
+{
+  "public_chain_sha256": "51b927d74a49a38abe7a3d130c9aae2278b980ca19a8089df9f91d9e75a1c46b",
+  "public_claim": {
+    "claim_kind": "SIGNAL",
+    "direction_if_signal": "LONG",
+    "epoch": "PT-EPOCH-003",
+    "issued_time_utc": "2026-09-07T02:04:51.577472+00:00",
+    "schema": "proof-tape-public-claim-v2",
+    "source_time_utc": "2026-09-07T02:04:20+00:00",
+    "token_id": 89437333
+  },
+  "public_leaf_sha256": "cf9cf52363e739814a027b19a9469b3e992a403d810a4ec0641bee82f22b9558",
+  "revealed_utc": "2026-09-08T02:04:56.227750+00:00",
+  "salt_hex": "0cc70645a50d8fe1e47c58e37f3f59bb679fdf9e85e6daa9bbd0596e402d8dc2",
+  "schema": "proof-tape-public-reveal-v2",
+  "witness": {
+    "artifact": "witnesses/20260907_0200.json",
+    "identifier": "20260907_0200",
+    "merkle_path": [
+      {
+        "sha256": "cf9cf52363e739814a027b19a9469b3e992a403d810a4ec0641bee82f22b9558",
+        "side": "right"
+      },
+      {
+        "sha256": "cfa0adc17fec481c436661b4f54fee29f588e3dd5092911abac7f18c031c49e8",
+        "side": "left"
+      },
+      {
+        "sha256": "a163265a460188380ef12ecc1ec6919b2a944c8ae24842c5f6eade4487254907",
+        "side": "left"
+      },
+      {
+        "sha256": "0997b8f073ce51d5b6936ffdb03a9c86b4a359d2bc0200aae84c1b68a94d022a",
+        "side": "left"
+      }
+    ],
+    "merkle_root_sha256": "433a29763db26dd674603c6094843328ba314baa496dec64cb718b28b4a3e256"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "A_signal_hit": {
+    "definition": "hits / issued official signals contained in verified full packs (on-time and late), judged by LANIAKEA-ISSUED-FIRST-TRADE-V3 on the public Binance tape; TSA_BEFORE_OUTCOME and unresolved-at-expiry rules unchanged",
+    "retrospective_label_before_2026_10_21": "RETROSPECTIVE_V5_METHOD",
+    "scope_note": "hit of issued, verifiable signals; not a continuity score \u2014 read together with B"
+  },
+  "B_coverage": {
+    "categories_disjoint_and_summing_to_expected": [
+      "revealed_official_tokens",
+      "declared_outage_tokens",
+      "unrevealed_undeclared_tokens",
+      "missing_or_invalid_pack_tokens",
+      "pending_tokens",
+      "evidence_unavailable_tokens"
+    ],
+    "formula": "coverage_percent = revealed_official_tokens / expected_official_tokens x 100",
+    "scope": "official tokens of the due days as of the evaluation instant; declared outages listed with signed reference and duration"
+  },
+  "C_contract_score": {
+    "definition": "hits / denominator including every contractual penalty, per contract version of each day (V4.1 before 2026-10-21, V4.2 from 2026-10-21); printed with the rules version"
+  },
+  "canonical_track_manifest_sha256": "cfbd9c017e32dc2c38444281a52d7b1e96447780082960f63ad914adf3ed2857",
+  "content_sha256": "f63eb941104bc4a80c7c3b794842ea6c26b16b76b22aa3a45bd6165727c9ef5b",
+  "created_utc": "2026-10-18T06:50:55.060599+00:00",
+  "diagnostics_published": "per figure: insufficient tape, current-judge rejudge mismatches, legacy-judge differences (total, direction, timing-only; differences against legacy pack resolution fields, not prediction errors), timing and expired misses, the Binance tape file manifest and the executed verifier sha256",
+  "metrics_id": "LANIAKEA-PUBLIC-METRICS-V5",
+  "model_epoch_disclosure": "NONE",
+  "presentation_rule": "A, B and C are always published together.",
+  "public_recipe_information": "NONE",
+  "recipe_disclosure": "NONE",
+  "schema": "laniakea-public-metrics-definition-v1",
+  "statuses": {
+    "FINAL": "integrity PASS, market rejudge PASS for this figure, no pending day, rules authenticated",
+    "HOLD": "integrity HOLD, rules HOLD, or this figure has insufficient tape or a current-judge mismatch",
+    "PENDING_INDEPENDENT_MARKET_REJUDGE": "no public Binance tape supplied",
+    "PROVISIONAL": "a due day is still LATE_PENDING",
+    "UNRELEASED_REHEARSAL": "the V4.2 amendment, this metrics document or the verifier release is not yet admitted",
+    "exit_codes": {
+      "0": "official final PASS",
+      "1": "HOLD",
+      "2": "provisional or unreleased"
+    }
+  },
+  "track_id": "LANIAKEA-CLOVER-H-OFFICIAL-V1"
+}

@@ -1,0 +1,86 @@
+{
+  "canonical_track_manifest_sha256": "cfbd9c017e32dc2c38444281a52d7b1e96447780082960f63ad914adf3ed2857",
+  "content_sha256": "f1c982f95122e71124f2592af2ecc555e91f33aabfc78fbeea666c088d392dcb",
+  "created_utc": "2026-10-18T06:51:54.393506+00:00",
+  "dependencies": {
+    "external_binaries": [
+      "/opt/homebrew/bin/openssl",
+      "/opt/homebrew/bin/cosign",
+      "/opt/homebrew/bin/ots"
+    ],
+    "model_or_recipe": false,
+    "private_databases": false,
+    "private_keys": false
+  },
+  "files": {
+    "tests": [
+      {
+        "path": "tools/test_verify_public_track_v5.py",
+        "sha256": "9d773b51ce4e2d8dcbc31e75d44521c1f67c770fc200b3a49b430f85f10cf869"
+      },
+      {
+        "path": "tools/test_verify_public_track_v5_flow.py",
+        "sha256": "9f99b43ea93cf98f179c7050c919a535bdb577fab59468e6f41632fdf6bb69ef"
+      },
+      {
+        "path": "tools/test_verify_public_track_v5_tools.py",
+        "sha256": "0e551c57a5737d36187708fffb33aadc574b5b5ae809cc39c997af122a67b4c8"
+      }
+    ],
+    "verifier": {
+      "path": "tools/verify_public_track_v5.py",
+      "sha256": "f99825ccd64501d16d96ef3cf4f4d5f30a17bf57a97ada8dfe0fdc967c2f87be"
+    }
+  },
+  "imports_unchanged_release": {
+    "path": "tools/verify_public_track_v4.py",
+    "release_manifest_sha256": "fb81a617f64931036fc67fc12587c4323e422de564ffc8e6433ec9178dec41ec",
+    "sha256": "8e13ba9b13844aa482f6c8b2e2cc2ca3bf73737b78099ae527971d95ff38577c"
+  },
+  "judge_id": "LANIAKEA-ISSUED-FIRST-TRADE-V3",
+  "legacy_reports_rewritten": false,
+  "model_epoch_disclosure": "NONE",
+  "public_recipe_information": "NONE",
+  "recipe_disclosure": "NONE",
+  "release_id": "LANIAKEA-PUBLIC-VERIFIER-V5",
+  "result_on_public_tree_2026_10_17": {
+    "A_signal_hit": [
+      1667,
+      2900
+    ],
+    "B_coverage_percent": 99.354,
+    "C_contract_score": [
+      1667,
+      21291
+    ],
+    "days": {
+      "INVALID_PACK": 0,
+      "LATE_PACK": 4,
+      "ON_TIME": 40
+    },
+    "integrity": "PASS",
+    "market_rejudge": "PASS",
+    "penalty_misses": 18397
+  },
+  "rules_documents": {
+    "amendment": {
+      "path": "amendments/PROOF_TAPE_EVIDENCE_CONTRACT_V4_2_20261018.json",
+      "sha256": "ac1e6ae1a45b6ed95e1ed838e015a317eef7048bdf108ab8fa5f41c591b6b344"
+    },
+    "binding_rule": "the publisher writes the exact sha256 of the published amendment and metrics documents here before signing; V5 refuses (HOLD) a release that does not bind both, or that does not bind its own executed sha256",
+    "metrics": {
+      "path": "amendments/PUBLIC_METRICS_V5_20261018.json",
+      "sha256": "21c9142282ae70bb096535e32a29c530a18734d149f8e953ab07a0ca57fb403e"
+    }
+  },
+  "schema": "laniakea-public-verifier-release-v1",
+  "test_receipts": {
+    "determinism": "two full runs at the same instant (V5_R5_A/B), equal to revision 3 (V5_R5_COMPARE.txt)",
+    "scenarios": "PASS (32 main() scenarios: R1 F1\u2013F4, R2 F3/F4, R3 tool failures)",
+    "tools": "PASS (28 scripted guard cases; real tools on the 2026-10-05 pack: broken openssl \u2192 ToolFailure, receipt reused for another leaf \u2192 exactly one timing miss (also as the first receipt after warm-up), ENOSPC / read-only RFC 3161 staging \u2192 ToolFailure, unreadable TSA root \u2192 ToolFailure, response hash mismatch \u2192 one timing miss; copies: unreadable signature / bundle / blob / .ots \u2192 ToolFailure, flipped signature / tampered blob / moved integratedTime / flipped message signature / garbage .ots \u2192 rejected)",
+    "unit_and_bridge": "PASS (11 contract_day, 17 bridge, real 10-07, evidence pre-check on 44 manifests + removed-file copy)"
+  },
+  "track_id": "LANIAKEA-CLOVER-H-OFFICIAL-V1",
+  "v4_bytes_changed": false,
+  "v4_defect_fixed": "V4 skipped the content of a LATE_PACK and set the next previous_chain to UNRECOMPUTABLE; any UNREVEALED row also nulled final_chain. Every later pack then failed the cross-pack seam check and was reported INVALID_PACK. On the public tree as of 2026-10-17 V4 reports 11 penalized days (47,520 misses); 7 of them (2026-10-03\u202608, 2026-10-12) are this artifact. V5 also never penalizes a day for an unavailable predecessor, treats unanchored or post-as-of evidence as pending/missing by contract time, separates demonstrated invalid bytes from unavailable evidence, and authenticates its own release and the new rule documents."
+}

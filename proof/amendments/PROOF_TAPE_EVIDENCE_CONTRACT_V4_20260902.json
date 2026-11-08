@@ -1,0 +1,54 @@
+{
+  "amendment_id": "PT-EVIDENCE-CONTRACT-004",
+  "canonical_track_manifest_sha256": "cfbd9c017e32dc2c38444281a52d7b1e96447780082960f63ad914adf3ed2857",
+  "content_sha256": "b9b5495c21a5aa1b73717502386263a50a60f7fdebb4f766ac7a89238b4111fe",
+  "created_utc": "2026-09-02T13:17:48.511373+00:00",
+  "effective_from_token": 89419680,
+  "effective_from_utc": "2026-09-03T00:00:00+00:00",
+  "extends_public_spec_sha256": "9b43540a09b0f2828007f3e1156f55dfbaa8c18dbd14ac8b9bbb533e8c582b07",
+  "measured_baselines": {
+    "c88_first_window": {
+      "minimum_private_tsa_before_resolution_seconds": 4565.0,
+      "signals": 491,
+      "timing_violations": 0
+    },
+    "founding_epoch": {
+      "minimum_external_witness_before_resolution_seconds": 8768.5837,
+      "signals": 334,
+      "timing_violations": 0
+    },
+    "historical_context_only": {
+      "minimum_observed_resolution_seconds": 120.0,
+      "role": "CONTEXT_NOT_PROOF"
+    }
+  },
+  "model_epoch_disclosure": "NONE",
+  "public_recipe_information": "NONE",
+  "recipe_disclosure": "NONE",
+  "rules": {
+    "TSA_BEFORE_OUTCOME": {
+      "comparison": "TRUSTED_EXTERNAL_TIMESTAMP_STRICTLY_BEFORE_RESOLUTION_TS",
+      "earlier_founding_fallback": "VERIFIED_FIVE_MINUTE_SIGSTORE_TRANSPARENCY_TIME",
+      "missing_or_late_timestamp": "INVALID_TIMING_AND_PUBLIC_MISS",
+      "private_rfc3161_required_from_token": 89415360,
+      "unresolved_at_expiry": "PUBLIC_MISS"
+    },
+    "UNREVEALED_TOKEN_IS_MISS": {
+      "deadline_seconds_after_utc_day_end": 345600,
+      "expected_population": "EVERY_OFFICIAL_20_SECOND_TOKEN",
+      "integrity_status": "INCOMPLETE_HOLD",
+      "late_opening": "MAY_RESTORE_AUDIT_CONTENT_BUT_NEVER_REDUCES_THE_FROZEN_PENALTY",
+      "missing_complete_pack": "EVERY_EXPECTED_OFFICIAL_TOKEN_IS_A_PUBLIC_MISS",
+      "missing_or_invalid_opening": "ONE_PUBLIC_MISS_PER_TOKEN",
+      "silent_omission": "FORBIDDEN"
+    }
+  },
+  "schema": "proof-tape-public-evidence-contract-amendment-v4",
+  "scoring": {
+    "denominator_omission": "FORBIDDEN",
+    "invalid_timing": "MISS",
+    "unrevealed_token": "MISS",
+    "valid_correct_signal": "HIT",
+    "wrong_direction": "MISS"
+  }
+}

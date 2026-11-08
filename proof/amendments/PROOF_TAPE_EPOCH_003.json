@@ -1,0 +1,36 @@
+{
+  "schema": "proof-tape-public-amendment-v3",
+  "epoch": "PT-EPOCH-003",
+  "continues_epoch": "PT-EPOCH-002",
+  "previous_epoch_genesis_sha256": "6b7fc16d437f86e6a36822588906b828066bbec12cbdf525627c9157f17d574c",
+  "previous_epoch_genesis_chain_sha256": "a4b80f8879091206f949c6712d5eebed4d9d0711bd8e9d3d018fc6977b79c437",
+  "effective_from_utc": "2026-09-02T00:00:00+00:00",
+  "chain_policy": "continue the existing contiguous public token chain without reset",
+  "public_claim_states": [
+    "NO_SIGNAL",
+    "SIGNAL_LONG",
+    "SIGNAL_SHORT"
+  ],
+  "private_per_signal_timestamp": {
+    "standard": "RFC 3161",
+    "publication_at_birth": false,
+    "public_transparency_log_at_birth": false,
+    "disclosure": "with the safely delayed signal or full token pack"
+  },
+  "five_minute_signal_count": {
+    "public_value": "salted commitment only",
+    "count_and_salt_disclosure": "inside the 96-hour full token pack"
+  },
+  "full_token_pack": {
+    "delay_seconds": 345600,
+    "population": "every contiguous 20-second token",
+    "purpose": "prove delayed completeness and prevent selective reveal omission"
+  },
+  "weekly_policy": {
+    "public_content": "NONE",
+    "public_commitment": "salted opaque commitment timestamped before effect",
+    "voluntary_private_disclosure": true
+  },
+  "public_recipe_information": "NONE",
+  "production_dependency": false
+}
