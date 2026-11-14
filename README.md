@@ -21,14 +21,14 @@ Sealing began on 30 August 2026. The official record starts on 3 September 2026,
 ```
 git clone https://github.com/dsur91/laniakealabs.org
 cd laniakealabs.org
-python3 proof/tools/verify_public_track_v5.py --public-root proof --witness-chain
+python3 proof/tools/verify_public_track_v5.py --public-root proof --now-epoch <snapshot time>
 ```
 
-The verifier is written in Python with the standard library only, and it calls three command-line tools: `openssl`, `cosign` and `ots`. It checks every seal one by one, so allow it time. It needs nothing from us.
+The tree in this repository is a snapshot, refreshed weekly, so the verifier is asked to judge the record as of the snapshot's own time. The exact command, with that time filled in, is printed at the bottom of [laniakealabs.org/proof](https://laniakealabs.org/proof/). Without `--now-epoch` the verifier judges as of now and reports the days that fell due after the snapshot as missing.
 
-It checks the cryptographic integrity of the chain and reports three separately labelled figures: signal hit, coverage and contract score. Exit code 0 means an official, final PASS; 1 means HOLD; 2 means provisional.
+What to expect: `CRYPTOGRAPHIC_INTEGRITY: PASS` and the verdict `PROVISIONAL` (exit code 2). The last step, re-judging every revealed call against the exchange's own record, needs the exchange's public BTCUSDT trade files: add `--binance-tape <folder>` for the hit figures and the final verdict (exit code 0 for an official, final PASS; 1 for HOLD). Add `--witness-chain` to audit every five-minute witness as well.
 
-To re-judge every revealed call yourself, download the exchange's public BTCUSDT trade files and add `--binance-tape <folder>`.
+The verifier is written in Python with the standard library only, and it calls three command-line tools: `openssl`, `cosign` and `ots`. It checks every seal one by one: allow about half an hour on a laptop, and more as the record grows. It needs nothing from us.
 
 For a first look without a terminal, the "Check a seal" card on the main page recomputes a revealed call's fingerprint, Merkle path and signatures in your browser.
 
