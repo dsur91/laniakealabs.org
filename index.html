@@ -3865,6 +3865,14 @@ function lkNoteNav(d){var ov=document.getElementById('noteov');if(!ov||!ov.class
   lkNoteOpen(order[(i+d+order.length)%order.length]);}
 addEventListener('keydown',function(e){if(e.key==='Escape')lkNoteClose();
   else if(e.key==='ArrowRight')lkNoteNav(1);else if(e.key==='ArrowLeft')lkNoteNav(-1);});
+/* direct links: #note-<id> opens that note, and the address follows the note that is open */
+(function(){var o=lkNoteOpen,c=lkNoteClose;
+  function fromHash(){var m=/^#(note-[a-z]+)$/.exec(location.hash||'');if(!m)return;
+    var el=document.getElementById(m[1]);if(el&&el.classList.contains('note-art'))o(m[1]);}
+  lkNoteOpen=function(id){o(id);try{history.replaceState(null,'','#'+id)}catch(e){}};
+  lkNoteClose=function(){c();try{if(/^#note-/.test(location.hash))history.replaceState(null,'',location.pathname+location.search)}catch(e){}};
+  addEventListener('hashchange',fromHash);
+  if(document.readyState==='loading')addEventListener('DOMContentLoaded',fromHash);else fromHash();})();
 </script>
 
 
